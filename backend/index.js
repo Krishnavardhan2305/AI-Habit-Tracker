@@ -7,6 +7,7 @@ import cors from "cors";
 import { connectDB } from "./config/db.js";
 import { notFound, errorHandler } from "./middleware/errorHandler.js";
 import authRoutes from "./routes/auth.js";
+import habitRoutes from "./routes/habits.js";
 const app = express();
 
 const allowedOrigins = [
@@ -49,7 +50,7 @@ connectDB();
 app.use(notFound);
 app.use(errorHandler);
 app.use("/api/auth",authRoutes)
-
+app.use("/api/habits",habitRoutes);
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
